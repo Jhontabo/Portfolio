@@ -1,9 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Send } from "lucide-react";
 import { personalInfo } from "@/lib/data";
-import { useState } from "react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,6 +11,15 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,11 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { navLinks, personalInfo } from "@/lib/data";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(2024);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <footer className="py-8 bg-zinc-900/80 border-t border-zinc-800">

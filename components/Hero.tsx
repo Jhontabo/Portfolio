@@ -1,10 +1,21 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Download } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <section
       id="home"
@@ -35,23 +46,13 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <motion.a
-                href="#projects"
+                href="#portfolio"
                 className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Ver proyectos
                 <ArrowRight size={18} />
-              </motion.a>
-              <motion.a
-                href="/cv.pdf"
-                download
-                className="flex items-center gap-2 border border-zinc-700 hover:border-emerald-500 text-zinc-300 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Download size={18} />
-                Descargar CV
               </motion.a>
               <motion.a
                 href="#contact"

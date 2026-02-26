@@ -1,9 +1,19 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Code, Network } from "lucide-react";
 
 export default function About() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
   return (
     <section id="about" className="py-20 bg-zinc-900/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

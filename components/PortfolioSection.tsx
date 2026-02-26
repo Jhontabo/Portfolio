@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Folder, Award, Calendar, Terminal, Server, Wrench } from "lucide-react";
 import { projects, certificates, skills } from "@/lib/data";
@@ -25,6 +25,15 @@ const categoryLabels = {
 
 export default function PortfolioSection() {
   const [activeTab, setActiveTab] = useState("projects");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <section id="portfolio" className="py-12 sm:py-20">
