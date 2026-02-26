@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
 export default function Hero() {
@@ -53,6 +53,16 @@ export default function Hero() {
               >
                 Ver proyectos
                 <ArrowRight size={18} />
+              </motion.a>
+              <motion.a
+                href="/cv.pdf"
+                download
+                className="flex items-center gap-2 border border-zinc-700 hover:border-emerald-500 text-zinc-300 hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download size={18} />
+                Descargar CV
               </motion.a>
               <motion.a
                 href="#contact"

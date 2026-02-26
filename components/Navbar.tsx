@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navLinks, personalInfo } from "@/lib/data";
 
 export default function Navbar() {
@@ -54,16 +54,6 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <motion.a
-              href="/cv.pdf"
-              download
-              className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Download size={16} />
-              Descargar CV
-            </motion.a>
           </div>
 
           <button
@@ -93,14 +83,6 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <a
-              href="/cv.pdf"
-              download
-              className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
-            >
-              <Download size={16} />
-              Descargar CV
-            </a>
           </div>
         </motion.div>
       )}
