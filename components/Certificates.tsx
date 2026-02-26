@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 import { certificates } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
 
 export default function Certificates() {
+  const { t } = useLocale();
+
   return (
     <section id="certificates" className="py-20 bg-zinc-900/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +19,7 @@ export default function Certificates() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Certificados
+            {t.certificates.title}
           </h2>
           <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
         </motion.div>

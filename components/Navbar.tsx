@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navLinks, personalInfo } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     setMounted(true);
@@ -22,6 +24,13 @@ export default function Navbar() {
   if (!mounted) {
     return null;
   }
+
+  const navItems = [
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.portfolio, href: "#portfolio" },
+    { name: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <motion.nav
@@ -45,7 +54,7 @@ export default function Navbar() {
           </motion.a>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navItems.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -54,6 +63,7 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <LanguageSwitcher />
           </div>
 
           <button
@@ -73,7 +83,7 @@ export default function Navbar() {
           className="md:hidden bg-black/95 backdrop-blur-md"
         >
           <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+            {navItems.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -83,6 +93,9 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <div className="pt-2">
+              <LanguageSwitcher />
+            </div>
           </div>
         </motion.div>
       )}

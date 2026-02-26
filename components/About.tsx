@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Code, Network } from "lucide-react";
+import { useLocale } from "./LocaleProvider";
 
 export default function About() {
   const [mounted, setMounted] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     setMounted(true);
@@ -25,7 +27,7 @@ export default function About() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Sobre mí
+            {t.about.title}
           </h2>
           <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
         </motion.div>
@@ -46,7 +48,7 @@ export default function About() {
                       <User size={64} className="text-emerald-500" />
                     </div>
                     <p className="text-zinc-500 text-sm">
-                      Tu foto aquí
+                      {t.about.yourPhoto}
                     </p>
                   </div>
                 </div>
@@ -63,32 +65,25 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="text-2xl font-semibold text-white">
-              Estudiante de Ingeniería de Sistemas
+              {t.about.subtitle}
             </h3>
             <p className="text-zinc-400 leading-relaxed">
-              Soy un desarrollador full-stack con experiencia en la creación de
-              aplicaciones web modernas y escalables. Me especializo en el
-              desarrollo tanto del frontend como del backend, utilizando
-              tecnologías como React, Next.js, Express.js y Laravel.
+              {t.about.description1}
             </p>
             <p className="text-zinc-400 leading-relaxed">
-              Tengo un sólido dominio en el manejo de{" "}
-              <span className="text-emerald-500 font-medium">redes</span> y{" "}
-              <span className="text-emerald-500 font-medium">
-                sistemas de autenticación
-              </span>
-              , incluyendo JWT, OAuth y implementación de APIs RESTful
-              seguras.
+              {t.about.description2
+                .replace("{networks}", t.about.networks)
+                .replace("{auth}", t.about.auth)}
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 pt-4">
               <div className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-lg">
                 <Code className="text-emerald-500" size={24} />
-                <span className="text-zinc-300">Desarrollo Web</span>
+                <span className="text-zinc-300">{t.about.webDev}</span>
               </div>
               <div className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-lg">
                 <Network className="text-emerald-500" size={24} />
-                <span className="text-zinc-300">Redes & Auth</span>
+                <span className="text-zinc-300">{t.about.networksAuth}</span>
               </div>
             </div>
           </motion.div>

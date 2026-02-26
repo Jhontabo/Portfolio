@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "portfolio": "Portafolio",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola, soy",
+    "description": "Estudiante de Ingeniería de Sistemas con enfoque en desarrollo web. Buscando trabajar en entornos de habla inglesa.",
+    "viewProjects": "Ver proyectos",
+    "downloadCV": "Descargar CV",
+    "contactMe": "Contactarme",
+    "professionalPhoto": "Foto profesional"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "subtitle": "Estudiante de Ingeniería de Sistemas",
+    "description1": "Soy un desarrollador full-stack con experiencia en la creación de aplicaciones web modernas y escalables. Me especializo en el desarrollo tanto del frontend como del backend, utilizando tecnologías como React, Next.js, Express.js y Laravel.",
+    "description2": "Tengo un sólido dominio en el manejo de {networks} y {auth}, incluyendo JWT, OAuth y implementación de APIs RESTful seguras.",
+    "networks": "redes",
+    "auth": "sistemas de autenticación",
+    "webDev": "Desarrollo Web",
+    "networksAuth": "Redes & Auth",
+    "yourPhoto": "Tu foto aquí"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "demo": "Demo",
+    "github": "GitHub"
+  },
+  "skills": {
+    "title": "Habilidades",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Herramientas"
+  },
+  "certificates": {
+    "title": "Certificaciones"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¡Contáctame!",
+    "description": "Estoy buscando oportunidades de trabajo. No dudes en contactarme.",
+    "send": "Enviar mensaje",
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.com",
+    "messagePlaceholder": "Tu mensaje..."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}

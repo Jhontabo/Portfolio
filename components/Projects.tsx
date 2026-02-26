@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Folder } from "lucide-react";
 import { projects } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
 
 export default function Projects() {
+  const { t } = useLocale();
+
   return (
     <section id="projects" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +19,7 @@ export default function Projects() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Proyectos
+            {t.projects.title}
           </h2>
           <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
         </motion.div>
@@ -61,14 +64,14 @@ export default function Projects() {
                     className="flex items-center gap-2 text-sm text-emerald-500 hover:text-emerald-400 transition-colors"
                   >
                     <ExternalLink size={16} />
-                    Demo
+                    {t.projects.demo}
                   </a>
                   <a
                     href={project.github}
                     className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
                   >
                     <Github size={16} />
-                    GitHub
+                    {t.projects.github}
                   </a>
                 </div>
               </div>

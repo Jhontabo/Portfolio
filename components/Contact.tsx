@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Send } from "lucide-react";
 import { personalInfo } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function Contact() {
     message: "",
   });
   const [mounted, setMounted] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     setMounted(true);
@@ -37,7 +39,7 @@ export default function Contact() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Contacto
+            {t.contact.title}
           </h2>
           <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
         </motion.div>
@@ -51,12 +53,10 @@ export default function Contact() {
             className="space-y-6"
           >
             <h3 className="text-2xl font-semibold text-white">
-              ¡Conectemos!
+              {t.contact.subtitle}
             </h3>
             <p className="text-zinc-400">
-              Estoy siempre abierto a nuevas oportunidades y proyectos
-              interesantes. No dudes en contactarme a través de cualquiera de
-              estos medios.
+              {t.contact.description}
             </p>
 
             <div className="space-y-4">
@@ -116,12 +116,12 @@ export default function Contact() {
               className="space-y-4 bg-zinc-900 border border-zinc-800 rounded-xl p-6"
             >
               <h3 className="text-xl font-semibold text-white mb-4">
-                Envíame un mensaje
+                {t.contact.subtitle}
               </h3>
 
               <div>
                 <label className="block text-zinc-400 text-sm mb-2">
-                  Nombre
+                  {t.contact.name}
                 </label>
                 <input
                   type="text"
@@ -130,14 +130,14 @@ export default function Contact() {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-emerald-500 transition-colors"
-                  placeholder="Tu nombre"
+                  placeholder={t.contact.namePlaceholder}
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-zinc-400 text-sm mb-2">
-                  Email
+                  {t.contact.email}
                 </label>
                 <input
                   type="email"
@@ -146,14 +146,14 @@ export default function Contact() {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-emerald-500 transition-colors"
-                  placeholder="tu@email.com"
+                  placeholder={t.contact.emailPlaceholder}
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-zinc-400 text-sm mb-2">
-                  Mensaje
+                  {t.contact.message}
                 </label>
                 <textarea
                   value={formData.message}
@@ -162,7 +162,7 @@ export default function Contact() {
                   }
                   rows={4}
                   className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:border-emerald-500 transition-colors resize-none"
-                  placeholder="Tu mensaje..."
+                  placeholder={t.contact.messagePlaceholder}
                   required
                 />
               </div>
@@ -174,7 +174,7 @@ export default function Contact() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Send size={18} />
-                Enviar mensaje
+                {t.contact.send}
               </motion.button>
             </form>
           </motion.div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Terminal, Server, Wrench } from "lucide-react";
 import { skills } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
 
 const categoryIcons = {
   frontend: Terminal,
@@ -10,13 +11,15 @@ const categoryIcons = {
   tools: Wrench,
 };
 
-const categoryLabels = {
-  frontend: "Frontend",
-  backend: "Backend",
-  tools: "Herramientas",
-};
-
 export default function Skills() {
+  const { t } = useLocale();
+
+  const categoryLabels = {
+    frontend: t.skills.frontend,
+    backend: t.skills.backend,
+    tools: t.skills.tools,
+  };
+
   return (
     <section id="skills" className="py-20 bg-zinc-900/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +31,7 @@ export default function Skills() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Habilidades
+            {t.skills.title}
           </h2>
           <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
         </motion.div>

@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "description": "Systems Engineering student focused on web development. Looking to work in English-speaking environments.",
+    "viewProjects": "View Projects",
+    "downloadCV": "Download CV",
+    "contactMe": "Contact Me",
+    "professionalPhoto": "Professional photo"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Systems Engineering Student",
+    "description1": "I'm a full-stack developer with experience in creating modern and scalable web applications. I specialize in both frontend and backend development, using technologies like React, Next.js, Express.js, and Laravel.",
+    "description2": "I have a solid mastery in {networks} and {auth}, including JWT, OAuth, and secure RESTful API implementation.",
+    "networks": "networking",
+    "auth": "authentication systems",
+    "webDev": "Web Development",
+    "networksAuth": "Networks & Auth",
+    "yourPhoto": "Your photo here"
+  },
+  "projects": {
+    "title": "Projects",
+    "demo": "Demo",
+    "github": "GitHub"
+  },
+  "skills": {
+    "title": "Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools"
+  },
+  "certificates": {
+    "title": "Certifications"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get In Touch!",
+    "description": "I'm looking for job opportunities. Feel free to reach out.",
+    "send": "Send message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "messagePlaceholder": "Your message..."
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

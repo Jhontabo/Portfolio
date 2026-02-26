@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Download } from "lucide-react";
-import { personalInfo } from "@/lib/data";
+import { useLocale } from "./LocaleProvider";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     setMounted(true);
@@ -31,17 +32,16 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-emerald-500 font-medium mb-4">
-              Hola, soy
+              {t.hero.greeting}
             </p>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-4">
-              {personalInfo.name}
+              Jhon Tajumbina
             </h1>
             <p className="text-xl sm:text-2xl text-zinc-400 mb-6">
-              {personalInfo.title}
+              Full-Stack Developer | React · Express · Laravel
             </p>
             <p className="text-zinc-500 mb-8 max-w-lg">
-              Estudiante de Ingeniería de Sistemas con enfoque en desarrollo web.
-              Buscando trabajar en entornos de habla inglesa.
+              {t.hero.description}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -51,7 +51,7 @@ export default function Hero() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Ver proyectos
+                {t.hero.viewProjects}
                 <ArrowRight size={18} />
               </motion.a>
               <motion.a
@@ -62,7 +62,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Download size={18} />
-                Descargar CV
+                {t.hero.downloadCV}
               </motion.a>
               <motion.a
                 href="#contact"
@@ -71,7 +71,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Mail size={18} />
-                Contactarme
+                {t.hero.contactMe}
               </motion.a>
             </div>
           </motion.div>
@@ -92,7 +92,7 @@ export default function Hero() {
                       </span>
                     </div>
                     <p className="text-zinc-500 text-sm">
-                      Foto profesional
+                      {t.hero.professionalPhoto}
                     </p>
                   </div>
                 </div>
