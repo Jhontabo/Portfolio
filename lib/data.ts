@@ -70,10 +70,44 @@ export const skills = {
   ],
 };
 
+export const certificates = [
+  {
+    id: 1,
+    name: "Certificación en Desarrollo Web Full Stack",
+    issuer: "Platzi",
+    date: "2024",
+    description: "Curso completo de desarrollo web con React, Node.js y bases de datos.",
+    link: "#",
+  },
+  {
+    id: 2,
+    name: "AWS Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "2024",
+    description: "Fundamentos de computación en la nube y servicios de AWS.",
+    link: "#",
+  },
+  {
+    id: 3,
+    name: "React - Guía Completa",
+    issuer: "Udemy",
+    date: "2023",
+    description: "Domina React con hooks, Redux, Next.js y más proyectos prácticos.",
+    link: "#",
+  },
+  {
+    id: 4,
+    name: "Linux Administration",
+    issuer: "Platzi",
+    date: "2023",
+    description: "Administración de sistemas Linux, bash scripting y gestión de servidores.",
+    link: "#",
+  },
+];
+
 export const navLinks = [
   { name: "Inicio", href: "#home" },
   { name: "Sobre mí", href: "#about" },
-  { name: "Proyectos", href: "#projects" },
-  { name: "Habilidades", href: "#skills" },
+  { name: "Portafolio", href: "#portfolio" },
   { name: "Contacto", href: "#contact" },
 ];
