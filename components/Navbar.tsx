@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLocale } from "./LocaleProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -9,11 +9,9 @@ import LanguageSwitcher from "./LanguageSwitcher";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const { t } = useLocale();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -21,13 +19,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
   const navItems = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.about, href: "#about" },
+    { name: t.nav.journey, href: "#journey" },
     { name: t.nav.portfolio, href: "#portfolio" },
     { name: t.nav.contact, href: "#contact" },
   ];
@@ -39,7 +34,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-black/80 backdrop-blur-md border-b border-white/10"
+          ? "bg-slate-950/75 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
           : "bg-transparent"
       }`}
     >
@@ -58,7 +53,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-zinc-300 hover:text-emerald-500 transition-colors text-sm font-medium"
+                className="text-zinc-300 hover:text-emerald-300 transition-colors text-sm font-medium"
               >
                 {link.name}
               </a>

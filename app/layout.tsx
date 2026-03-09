@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Space_Grotesk } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
-import { LocaleProvider } from "@/components/LocaleProvider";
+import { LocaleProvider, type Locale } from "@/components/LocaleProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -18,17 +19,25 @@ export const metadata: Metadata = {
   description: "Full-Stack Developer | React · Express · Laravel - Estudiante de Ingeniería de Sistemas",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get("locale")?.value;
+  const initialLocale: Locale = cookieLocale === "en" ? "en" : "es";
+
   return (
-    <html lang="es">
+    <html lang={initialLocale} translate="no" suppressHydrationWarning>
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
+        className={`${sora.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <LocaleProvider>
+        <LocaleProvider initialLocale={initialLocale}>
           {children}
         </LocaleProvider>
       </body>

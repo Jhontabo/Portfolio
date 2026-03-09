@@ -1,23 +1,27 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
-type Locale = "es" | "en";
+export type Locale = "es" | "en";
 
 interface Translations {
   nav: {
     home: string;
     about: string;
+    journey: string;
     portfolio: string;
     contact: string;
   };
   hero: {
     greeting: string;
+    role: string;
     description: string;
     viewProjects: string;
     downloadCV: string;
     contactMe: string;
     professionalPhoto: string;
+    availability: string;
+    location: string;
   };
   about: {
     title: string;
@@ -44,6 +48,24 @@ interface Translations {
   certificates: {
     title: string;
   };
+  portfolio: {
+    title: string;
+    subtitle: string;
+    tabs: {
+      projects: string;
+      certificates: string;
+      skills: string;
+    };
+    viewCredential: string;
+    setupTitle: string;
+    setupDescription: string;
+  };
+  journey: {
+    title: string;
+    subtitle: string;
+    viewGithub: string;
+    githubProfile: string;
+  };
   contact: {
     title: string;
     subtitle: string;
@@ -55,9 +77,12 @@ interface Translations {
     namePlaceholder: string;
     emailPlaceholder: string;
     messagePlaceholder: string;
+    linkedinHint: string;
+    githubHint: string;
   };
   footer: {
     rights: string;
+    madeWith: string;
   };
 }
 
@@ -83,30 +108,20 @@ const defaultContext: LocaleContextType = {
 
 const LocaleContext = createContext<LocaleContextType>(defaultContext);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("es");
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    const savedLocale = localStorage.getItem("locale") as Locale;
-    if (savedLocale && (savedLocale === "es" || savedLocale === "en")) {
-      setLocale(savedLocale);
-    }
-    setIsInitialized(true);
-  }, []);
+export function LocaleProvider({
+  children,
+  initialLocale = "es",
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocale] = useState<Locale>(initialLocale);
 
   const handleSetLocale = (newLocale: Locale) => {
     setLocale(newLocale);
     localStorage.setItem("locale", newLocale);
+    document.cookie = `locale=${newLocale}; path=/; max-age=31536000; samesite=lax`;
   };
-
-  if (!isInitialized) {
-    return (
-      <LocaleContext.Provider value={{ locale: "es", setLocale: handleSetLocale, t: translations.es }}>
-        {children}
-      </LocaleContext.Provider>
-    );
-  }
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale: handleSetLocale, t: translations[locale] }}>

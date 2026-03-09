@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, Send } from "lucide-react";
 import { personalInfo } from "@/lib/data";
@@ -12,16 +12,7 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const [mounted, setMounted] = useState(false);
   const { t } = useLocale();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,14 +55,14 @@ export default function Contact() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-emerald-500/50 transition-colors group"
+                className="flex items-center gap-4 p-4 bg-slate-950/80 border border-white/10 rounded-xl hover:border-emerald-300/40 transition-colors group backdrop-blur-sm"
               >
                 <div className="p-3 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-colors">
                   <Linkedin className="text-blue-500" size={24} />
                 </div>
                 <div>
                   <p className="text-white font-medium">LinkedIn</p>
-                  <p className="text-zinc-500 text-sm">Conectemos profesionalmente</p>
+                  <p className="text-zinc-400 text-sm">{t.contact.linkedinHint}</p>
                 </div>
               </a>
 
@@ -79,20 +70,20 @@ export default function Contact() {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-emerald-500/50 transition-colors group"
+                className="flex items-center gap-4 p-4 bg-slate-950/80 border border-white/10 rounded-xl hover:border-emerald-300/40 transition-colors group backdrop-blur-sm"
               >
                 <div className="p-3 bg-zinc-800 rounded-lg group-hover:bg-zinc-700 transition-colors">
                   <Github className="text-white" size={24} />
                 </div>
                 <div>
                   <p className="text-white font-medium">GitHub</p>
-                  <p className="text-zinc-500 text-sm">Explora mis proyectos</p>
+                  <p className="text-zinc-400 text-sm">{t.contact.githubHint}</p>
                 </div>
               </a>
 
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-4 p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-emerald-500/50 transition-colors group"
+                className="flex items-center gap-4 p-4 bg-slate-950/80 border border-white/10 rounded-xl hover:border-emerald-300/40 transition-colors group backdrop-blur-sm"
               >
                 <div className="p-3 bg-emerald-500/10 rounded-lg group-hover:bg-emerald-500/20 transition-colors">
                   <Mail className="text-emerald-500" size={24} />
@@ -113,7 +104,7 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="space-y-4 bg-zinc-900 border border-zinc-800 rounded-xl p-6"
+              className="space-y-4 bg-slate-950/80 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
             >
               <h3 className="text-xl font-semibold text-white mb-4">
                 {t.contact.subtitle}

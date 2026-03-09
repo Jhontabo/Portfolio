@@ -2,16 +2,20 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "journey": "Journey",
     "portfolio": "Portfolio",
     "contact": "Contact"
   },
   "hero": {
     "greeting": "Hello, I'm",
+    "role": "Full-Stack Developer | React · Express · Laravel",
     "description": "Systems Engineering student focused on web development. Looking to work in English-speaking environments.",
     "viewProjects": "View Projects",
     "downloadCV": "Download CV",
     "contactMe": "Contact Me",
-    "professionalPhoto": "Professional photo"
+    "professionalPhoto": "Professional photo",
+    "availability": "Open to remote opportunities",
+    "location": "Colombia · LATAM"
   },
   "about": {
     "title": "About Me",
@@ -38,6 +42,24 @@
   "certificates": {
     "title": "Certifications"
   },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Projects, certifications, and technical stack focused on real-world products.",
+    "tabs": {
+      "projects": "Projects",
+      "certificates": "Certificates",
+      "skills": "Skills"
+    },
+    "viewCredential": "View credential",
+    "setupTitle": "My Development Setup",
+    "setupDescription": "I work with Linux Arch, BSPWM, and NvChad to keep speed and focus high. On Windows environments I use WSL to preserve a native development workflow."
+  },
+  "journey": {
+    "title": "Professional Journey",
+    "subtitle": "Timeline of education, academic representation, and hands-on experience.",
+    "viewGithub": "View on GitHub",
+    "githubProfile": "Open my GitHub profile"
+  },
   "contact": {
     "title": "Contact",
     "subtitle": "Get In Touch!",
@@ -48,9 +70,12 @@
     "message": "Message",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
-    "messagePlaceholder": "Your message..."
+    "messagePlaceholder": "Your message...",
+    "linkedinHint": "Let's connect professionally",
+    "githubHint": "Explore my projects"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "madeWith": "Made with"
   }
 }

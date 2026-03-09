@@ -2,16 +2,20 @@
   "nav": {
     "home": "Inicio",
     "about": "Sobre mí",
+    "journey": "Ruta",
     "portfolio": "Portafolio",
     "contact": "Contacto"
   },
   "hero": {
     "greeting": "Hola, soy",
+    "role": "Full-Stack Developer | React · Express · Laravel",
     "description": "Estudiante de Ingeniería de Sistemas con enfoque en desarrollo web. Buscando trabajar en entornos de habla inglesa.",
     "viewProjects": "Ver proyectos",
     "downloadCV": "Descargar CV",
     "contactMe": "Contactarme",
-    "professionalPhoto": "Foto profesional"
+    "professionalPhoto": "Foto profesional",
+    "availability": "Disponible para oportunidades remotas",
+    "location": "Colombia · LATAM"
   },
   "about": {
     "title": "Sobre mí",
@@ -38,6 +42,24 @@
   "certificates": {
     "title": "Certificaciones"
   },
+  "portfolio": {
+    "title": "Portafolio",
+    "subtitle": "Proyectos, certificaciones y stack técnico con enfoque en producto real.",
+    "tabs": {
+      "projects": "Proyectos",
+      "certificates": "Certificados",
+      "skills": "Habilidades"
+    },
+    "viewCredential": "Ver credencial",
+    "setupTitle": "Mi Setup de Desarrollo",
+    "setupDescription": "Trabajo con Linux Arch, BSPWM y NvChad para mantener velocidad y foco. En entornos Windows uso WSL para conservar un flujo nativo de desarrollo."
+  },
+  "journey": {
+    "title": "Ruta Profesional",
+    "subtitle": "Línea de tiempo de formación, representación académica y experiencia aplicada.",
+    "viewGithub": "Ver en GitHub",
+    "githubProfile": "Ir a mi perfil de GitHub"
+  },
   "contact": {
     "title": "Contacto",
     "subtitle": "¡Contáctame!",
@@ -48,9 +70,12 @@
     "message": "Mensaje",
     "namePlaceholder": "Tu nombre",
     "emailPlaceholder": "tu@email.com",
-    "messagePlaceholder": "Tu mensaje..."
+    "messagePlaceholder": "Tu mensaje...",
+    "linkedinHint": "Conectemos profesionalmente",
+    "githubHint": "Explora mis proyectos"
   },
   "footer": {
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con"
   }
 }

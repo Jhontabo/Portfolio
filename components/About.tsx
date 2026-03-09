@@ -1,23 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { User, Code, Network } from "lucide-react";
 import { useLocale } from "./LocaleProvider";
 
 export default function About() {
-  const [mounted, setMounted] = useState(false);
   const { t } = useLocale();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
   return (
-    <section id="about" className="py-20 bg-zinc-900/50">
+    <section id="about" className="py-20 bg-slate-950/35">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,8 +32,8 @@ export default function About() {
             className="flex justify-center"
           >
             <div className="relative">
-              <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-zinc-800 p-1">
-                <div className="w-full h-full rounded-2xl bg-zinc-900 flex items-center justify-center">
+              <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-cyan-400/10 p-1">
+                <div className="w-full h-full rounded-2xl bg-slate-950/85 border border-white/10 flex items-center justify-center backdrop-blur-sm">
                   <div className="text-center p-6">
                     <div className="w-40 h-40 mx-auto mb-4 rounded-xl bg-emerald-500/10 flex items-center justify-center">
                       <User size={64} className="text-emerald-500" />
@@ -53,7 +44,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl" />
             </div>
           </motion.div>
 
@@ -77,11 +68,11 @@ export default function About() {
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 pt-4">
-              <div className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-lg">
+              <div className="flex items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-lg">
                 <Code className="text-emerald-500" size={24} />
                 <span className="text-zinc-300">{t.about.webDev}</span>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-zinc-800/50 rounded-lg">
+              <div className="flex items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-lg">
                 <Network className="text-emerald-500" size={24} />
                 <span className="text-zinc-300">{t.about.networksAuth}</span>
               </div>
