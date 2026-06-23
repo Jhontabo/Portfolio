@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLocale } from "./LocaleProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -13,7 +13,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,79 +21,94 @@ export default function Navbar() {
 
   const navItems = [
     { name: t.nav.home, href: "#home" },
-    { name: t.nav.about, href: "#about" },
     { name: t.nav.journey, href: "#journey" },
     { name: t.nav.portfolio, href: "#portfolio" },
     { name: t.nav.contact, href: "#contact" },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-slate-950/75 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.a
-            href="#home"
-            className="text-2xl font-bold text-emerald-500"
-            whileHover={{ scale: 1.05 }}
-          >
-            JT
-          </motion.a>
-
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-zinc-300 hover:text-emerald-300 transition-colors text-sm font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
-            <LanguageSwitcher />
-          </div>
-
-          <button
-            className="md:hidden text-zinc-300"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {isMobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-black/95 backdrop-blur-md"
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 pointer-events-none">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`w-full max-w-5xl pointer-events-auto rounded-full transition-all duration-300 border backdrop-blur-md px-6 py-2 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] ${
+          isScrolled
+            ? "bg-[#0b0c10]/80 border-cyan-500/20 shadow-[0_10px_30px_rgba(0,229,208,0.05)]"
+            : "bg-[#0b0c10]/40 border-white/5"
+        }`}
+      >
+        <motion.a
+          href="#home"
+          className="flex items-center gap-1.5 font-mono text-sm sm:text-base font-semibold text-zinc-300 hover:text-white transition-colors"
+          whileHover={{ scale: 1.03 }}
         >
-          <div className="px-4 py-4 space-y-3">
+          <span className="text-cyan-400">jt</span>
+          <span className="text-zinc-500">@</span>
+          <span className="text-purple-400 font-bold">arch</span>
+          <span className="text-zinc-500 font-normal">~ $</span>
+        </motion.a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-6 text-sm font-medium">
             {navItems.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block text-zinc-300 hover:text-emerald-500 transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="text-zinc-400 hover:text-cyan-400 transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              </li>
             ))}
-            <div className="pt-2">
-              <LanguageSwitcher />
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+          </ul>
+          <div className="h-4 w-px bg-white/10" />
+          <LanguageSwitcher />
+        </div>
+
+        {/* Mobile menu trigger */}
+        <button
+          className="md:hidden text-zinc-300 p-1 hover:text-cyan-400 transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        {/* Mobile menu drawer */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-4 right-4 mt-2 bg-[#0b0c10]/95 border border-white/10 rounded-2xl p-5 shadow-2xl backdrop-blur-lg flex flex-col gap-4"
+            >
+              <ul className="flex flex-col gap-3 font-medium">
+                {navItems.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="block py-2 text-zinc-300 hover:text-cyan-400 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="h-px bg-white/10 w-full" />
+              <div className="flex justify-between items-center">
+                <span className="text-zinc-500 font-mono text-xs">select locale:</span>
+                <LanguageSwitcher />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </div>
   );
 }
+

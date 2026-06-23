@@ -7,32 +7,15 @@ export type Locale = "es" | "en";
 interface Translations {
   nav: {
     home: string;
-    about: string;
     journey: string;
     portfolio: string;
     contact: string;
   };
   hero: {
-    greeting: string;
     role: string;
-    description: string;
     viewProjects: string;
     downloadCV: string;
     contactMe: string;
-    professionalPhoto: string;
-    availability: string;
-    location: string;
-  };
-  about: {
-    title: string;
-    subtitle: string;
-    description1: string;
-    description2: string;
-    networks: string;
-    auth: string;
-    webDev: string;
-    networksAuth: string;
-    yourPhoto: string;
   };
   projects: {
     title: string;

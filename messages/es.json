@@ -1,32 +1,15 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre mí",
     "journey": "Ruta",
     "portfolio": "Portafolio",
     "contact": "Contacto"
   },
   "hero": {
-    "greeting": "Hola, soy",
-    "role": "Full-Stack Developer | React · Express · Laravel",
-    "description": "Estudiante de Ingeniería de Sistemas con enfoque en desarrollo web. Buscando trabajar en entornos de habla inglesa.",
+    "role": "Full-Stack Developer",
     "viewProjects": "Ver proyectos",
     "downloadCV": "Descargar CV",
-    "contactMe": "Contactarme",
-    "professionalPhoto": "Foto profesional",
-    "availability": "Disponible para oportunidades remotas",
-    "location": "Colombia · LATAM"
-  },
-  "about": {
-    "title": "Sobre mí",
-    "subtitle": "Estudiante de Ingeniería de Sistemas",
-    "description1": "Soy un desarrollador full-stack con experiencia en la creación de aplicaciones web modernas y escalables. Me especializo en el desarrollo tanto del frontend como del backend, utilizando tecnologías como React, Next.js, Express.js y Laravel.",
-    "description2": "Tengo un sólido dominio en el manejo de {networks} y {auth}, incluyendo JWT, OAuth y implementación de APIs RESTful seguras.",
-    "networks": "redes",
-    "auth": "sistemas de autenticación",
-    "webDev": "Desarrollo Web",
-    "networksAuth": "Redes & Auth",
-    "yourPhoto": "Tu foto aquí"
+    "contactMe": "Contactarme"
   },
   "projects": {
     "title": "Proyectos",

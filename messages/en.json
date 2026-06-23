@@ -1,32 +1,15 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
     "journey": "Journey",
     "portfolio": "Portfolio",
     "contact": "Contact"
   },
   "hero": {
-    "greeting": "Hello, I'm",
-    "role": "Full-Stack Developer | React · Express · Laravel",
-    "description": "Systems Engineering student focused on web development. Looking to work in English-speaking environments.",
+    "role": "Full-Stack Developer",
     "viewProjects": "View Projects",
     "downloadCV": "Download CV",
-    "contactMe": "Contact Me",
-    "professionalPhoto": "Professional photo",
-    "availability": "Open to remote opportunities",
-    "location": "Colombia · LATAM"
-  },
-  "about": {
-    "title": "About Me",
-    "subtitle": "Systems Engineering Student",
-    "description1": "I'm a full-stack developer with experience in creating modern and scalable web applications. I specialize in both frontend and backend development, using technologies like React, Next.js, Express.js, and Laravel.",
-    "description2": "I have a solid mastery in {networks} and {auth}, including JWT, OAuth, and secure RESTful API implementation.",
-    "networks": "networking",
-    "auth": "authentication systems",
-    "webDev": "Web Development",
-    "networksAuth": "Networks & Auth",
-    "yourPhoto": "Your photo here"
+    "contactMe": "Contact Me"
   },
   "projects": {
     "title": "Projects",

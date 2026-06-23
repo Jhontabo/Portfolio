@@ -173,7 +173,6 @@ export const journeyTimeline = [
 
 export const navLinks = [
   { name: "Inicio", href: "#home" },
-  { name: "Sobre mí", href: "#about" },
   { name: "Portafolio", href: "#portfolio" },
   { name: "Contacto", href: "#contact" },
 ];

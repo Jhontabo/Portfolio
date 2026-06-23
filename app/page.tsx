@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import JourneyTimeline from "@/components/JourneyTimeline";
 import PortfolioSection from "@/components/PortfolioSection";
 import Contact from "@/components/Contact";
@@ -15,7 +14,6 @@ export default function Home() {
       </div>
       <Navbar />
       <Hero />
-      <About />
       <JourneyTimeline />
       <PortfolioSection />
       <Contact />
