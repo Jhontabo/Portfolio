@@ -80,11 +80,11 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center"
           >
-            <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-2 border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.15)]">
+            <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-cyan-400/30 shadow-[0_0_60px_rgba(34,211,238,0.15)] bg-zinc-900">
               <img
-                src="/images/jhon.webp"
+                src="/images/jhon.png"
                 alt="Jhon Tajumbina"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[center_10%]"
               />
             </div>
           </motion.div>
