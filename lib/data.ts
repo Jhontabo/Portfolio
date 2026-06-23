@@ -144,6 +144,7 @@ export const journeyTimeline = [
     descriptionEn:
       "Built a nursing app with Flutter to support clinical processes and operational workflows for healthcare teams.",
     linkType: "github",
+    link: "https://github.com/Jhontabo/Registro-UCI",
   },
   {
     id: 3,
@@ -160,14 +161,25 @@ export const journeyTimeline = [
   },
   {
     id: 4,
-    dateEs: "2026",
-    dateEn: "2026",
-    titleEs: "Finalización de Ingeniería de Sistemas",
-    titleEn: "Systems Engineering graduation",
+    dateEs: "Agosto 2025 - Abril 2026",
+    dateEn: "August 2025 - April 2026",
+    titleEs: "Auxiliar de crédito en Cofinal",
+    titleEn: "Credit assistant at Cofinal",
     descriptionEs:
-      "Cierre del ciclo universitario con enfoque en desarrollo full-stack y experiencia aplicada en proyectos reales.",
+      "Trabajé en el área de créditos, apoyando en procesos administrativos y financieros. Además, ayudaba a mis compañeros con problemas técnicos, soporte en Excel y optimización de tareas cotidianas.",
     descriptionEn:
-      "Completed university studies with a full-stack development focus and practical experience in real projects.",
+      "Worked in the credit area, supporting administrative and financial processes. I also helped colleagues with technical issues, Excel support, and optimization of daily tasks.",
+  },
+  {
+    id: 5,
+    dateEs: "Junio 2026",
+    dateEn: "June 2026",
+    titleEs: "Grado como Ingeniero de Sistemas",
+    titleEn: "Systems Engineering degree",
+    descriptionEs:
+      "Recibí el título universitario como Ingeniero de Sistemas, cerrando mi ciclo académico con enfoque en desarrollo full-stack y experiencia aplicada en proyectos reales.",
+    descriptionEn:
+      "Received my university degree as a Systems Engineer, closing my academic cycle with a focus on full-stack development and applied experience in real projects.",
   },
 ];
 

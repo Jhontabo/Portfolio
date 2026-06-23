@@ -63,22 +63,24 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors group"
             >
-              <Github size={18} />
+              <Github size={16} />
+              <span className="text-xs group-hover:text-white">GitHub</span>
             </a>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-blue-400 transition-colors"
+              className="flex items-center gap-1.5 text-zinc-400 hover:text-blue-400 transition-colors group"
             >
-              <Linkedin size={18} />
+              <Linkedin size={16} />
+              <span className="text-xs group-hover:text-blue-400">LinkedIn</span>
             </a>
           </div>
           <div className="h-4 w-px bg-white/10" />
@@ -122,17 +124,19 @@ export default function Navbar() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-white transition-colors"
+                  className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
                 >
-                  <Github size={18} />
+                  <Github size={16} />
+                  <span className="text-xs">GitHub</span>
                 </a>
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-1.5 text-zinc-400 hover:text-blue-400 transition-colors"
                 >
-                  <Linkedin size={18} />
+                  <Linkedin size={16} />
+                  <span className="text-xs">LinkedIn</span>
                 </a>
               </div>
               <div className="h-px bg-white/10 w-full" />
