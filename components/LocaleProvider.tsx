@@ -9,7 +9,6 @@ interface Translations {
     home: string;
     journey: string;
     portfolio: string;
-    contact: string;
   };
   hero: {
     role: string;
@@ -49,20 +48,7 @@ interface Translations {
     viewGithub: string;
     githubProfile: string;
   };
-  contact: {
-    title: string;
-    subtitle: string;
-    description: string;
-    send: string;
-    name: string;
-    email: string;
-    message: string;
-    namePlaceholder: string;
-    emailPlaceholder: string;
-    messagePlaceholder: string;
-    linkedinHint: string;
-    githubHint: string;
-  };
+
   footer: {
     rights: string;
     madeWith: string;

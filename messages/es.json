@@ -2,8 +2,7 @@
   "nav": {
     "home": "Inicio",
     "journey": "Ruta",
-    "portfolio": "Portafolio",
-    "contact": "Contacto"
+    "portfolio": "Portafolio"
   },
   "hero": {
     "role": "Full-Stack Developer",
@@ -42,20 +41,6 @@
     "subtitle": "Línea de tiempo de formación, representación académica y experiencia aplicada.",
     "viewGithub": "Ver en GitHub",
     "githubProfile": "Ir a mi perfil de GitHub"
-  },
-  "contact": {
-    "title": "Contacto",
-    "subtitle": "¡Contáctame!",
-    "description": "Estoy buscando oportunidades de trabajo. No dudes en contactarme.",
-    "send": "Enviar mensaje",
-    "name": "Nombre",
-    "email": "Email",
-    "message": "Mensaje",
-    "namePlaceholder": "Tu nombre",
-    "emailPlaceholder": "tu@email.com",
-    "messagePlaceholder": "Tu mensaje...",
-    "linkedinHint": "Conectemos profesionalmente",
-    "githubHint": "Explora mis proyectos"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",

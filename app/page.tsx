@@ -2,8 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import JourneyTimeline from "@/components/JourneyTimeline";
 import PortfolioSection from "@/components/PortfolioSection";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import TerminalFooter from "@/components/TerminalFooter";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       <JourneyTimeline />
       <PortfolioSection />
-      <Contact />
+      <TerminalFooter />
       <Footer />
     </main>
   );

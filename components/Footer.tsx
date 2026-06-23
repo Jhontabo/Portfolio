@@ -41,12 +41,6 @@ export default function Footer() {
             >
               # {t.nav.portfolio.toLowerCase()}
             </a>
-            <a
-              href="#contact"
-              className="text-zinc-500 hover:text-cyan-400 transition-colors text-xs font-mono"
-            >
-              # {t.nav.contact.toLowerCase()}
-            </a>
           </div>
         </div>
       </div>

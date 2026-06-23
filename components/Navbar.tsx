@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Linkedin, Github } from "lucide-react";
+import { personalInfo } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -23,7 +24,6 @@ export default function Navbar() {
     { name: t.nav.home, href: "#home" },
     { name: t.nav.journey, href: "#journey" },
     { name: t.nav.portfolio, href: "#portfolio" },
-    { name: t.nav.contact, href: "#contact" },
   ];
 
   return (
@@ -50,7 +50,7 @@ export default function Navbar() {
         </motion.a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6 text-sm font-medium">
             {navItems.map((link) => (
               <li key={link.name}>
@@ -63,6 +63,24 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <div className="flex items-center gap-3">
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-blue-400 transition-colors"
+            >
+              <Linkedin size={18} />
+            </a>
+          </div>
           <div className="h-4 w-px bg-white/10" />
           <LanguageSwitcher />
         </div>
@@ -99,6 +117,24 @@ export default function Navbar() {
                   </li>
                 ))}
               </ul>
+              <div className="flex items-center gap-4">
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
+                  <Github size={18} />
+                </a>
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-blue-400 transition-colors"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
               <div className="h-px bg-white/10 w-full" />
               <div className="flex justify-between items-center">
                 <span className="text-zinc-500 font-mono text-xs">select locale:</span>

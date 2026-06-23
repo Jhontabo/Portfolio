@@ -2,8 +2,8 @@ export const personalInfo = {
   name: "Jhon Tajumbina",
   title: "Full-Stack Developer | React · Express · Laravel",
   email: "jhon.tajumbina@email.com",
-  linkedin: "https://linkedin.com/in/jhontajumbina",
-  github: "https://github.com/jhontajumbina",
+  linkedin: "https://www.linkedin.com/in/jhon-tajumbina-8917922a3",
+  github: "https://github.com/Jhontabo",
 };
 
 export const projects = [
@@ -174,5 +174,4 @@ export const journeyTimeline = [
 export const navLinks = [
   { name: "Inicio", href: "#home" },
   { name: "Portafolio", href: "#portfolio" },
-  { name: "Contacto", href: "#contact" },
 ];
