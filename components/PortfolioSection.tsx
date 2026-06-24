@@ -12,7 +12,9 @@ import {
   Server,
   Wrench,
   Monitor,
+  X,
 } from "lucide-react";
+import Image from "next/image";
 import { projects, certificates, skills } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
 
@@ -22,8 +24,26 @@ const categoryIcons = {
   tools: Wrench,
 };
 
+function getDriveId(link: string) {
+  const match = link.match(/\/file\/d\/([^/]+)/);
+  return match ? match[1] : null;
+}
+
+function getPreviewUrl(link: string) {
+  const id = getDriveId(link);
+  if (id) return `https://drive.google.com/file/d/${id}/preview`;
+  return link;
+}
+
+function getThumbnailUrl(link: string) {
+  const id = getDriveId(link);
+  if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
+  return null;
+}
+
 export default function PortfolioSection() {
   const [activeTab, setActiveTab] = useState("projects");
+  const [previewCertId, setPreviewCertId] = useState<number | null>(null);
   const { t, locale } = useLocale();
 
   const tabs = [
@@ -203,22 +223,35 @@ export default function PortfolioSection() {
                         </div>
                       </div>
 
-                      <p className="text-zinc-400 text-sm mb-4 line-clamp-3">
-                        {locale === "en" ? cert.descriptionEn ?? cert.description : cert.description}
-                      </p>
+                      {(() => {
+                        const thumb = getThumbnailUrl(cert.link);
+                        return thumb ? (
+                          <div className="mb-4 rounded-lg overflow-hidden border border-purple-300/15">
+                            <Image
+                              src={thumb}
+                              alt={cert.name}
+                              width={400}
+                              height={300}
+                              className="w-full max-h-64 object-contain bg-zinc-900/50 rounded-lg"
+                            />
+                          </div>
+                        ) : null;
+                      })()}
 
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-                        <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-xs">
-                          <Calendar size={13} />
-                          <span>{cert.date}</span>
-                        </div>
-                        <a
-                          href={cert.link}
+                        {cert.date ? (
+                          <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-xs">
+                            <Calendar size={13} />
+                            <span>{cert.date}</span>
+                          </div>
+                        ) : <div />}
+                        <button
+                          onClick={() => setPreviewCertId(cert.id)}
                           className="flex items-center gap-1.5 text-xs font-mono text-purple-300 hover:text-purple-200 transition-colors"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                           [view_doc]
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </motion.div>
@@ -333,6 +366,52 @@ export default function PortfolioSection() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Preview Modal */}
+      <AnimatePresence>
+        {previewCertId !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setPreviewCertId(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl h-[85vh] bg-zinc-900 rounded-xl border border-zinc-700 overflow-hidden flex flex-col"
+            >
+              <div className="h-10 bg-zinc-950 px-4 flex items-center justify-between border-b border-zinc-800 shrink-0">
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="text-xs font-mono text-zinc-500">
+                  {certificates.find((c) => c.id === previewCertId)?.name ?? "preview.pdf"}
+                </span>
+                <button
+                  onClick={() => setPreviewCertId(null)}
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="flex-1 bg-zinc-800">
+                <iframe
+                  src={getPreviewUrl(certificates.find((c) => c.id === previewCertId)?.link ?? "")}
+                  className="w-full h-full"
+                  allow="autoplay"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

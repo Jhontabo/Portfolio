@@ -119,6 +119,16 @@ export const certificates = [
     descriptionEn: "Linux systems administration, bash scripting, and server management.",
     link: "#",
   },
+  {
+    id: 5,
+    name: "Fundamentos de Ingeniería de Software",
+    nameEn: "Software Engineering Fundamentals",
+    issuer: "Platzi",
+    date: "",
+    description: "Fundamentos de ingeniería de software, metodologías de desarrollo, y mejores prácticas para la construcción de sistemas de software.",
+    descriptionEn: "Foundations of software engineering, development methodologies, and best practices for building software systems.",
+    link: "https://drive.google.com/file/d/1uRp9XQsNpzLzEe4x0h6vGzWOOSwLkYg-/view",
+  },
 ];
 
 export const journeyTimeline = [
@@ -145,19 +155,6 @@ export const journeyTimeline = [
       "Built a nursing app with Flutter to support clinical processes and operational workflows for healthcare teams.",
     linkType: "github",
     link: "https://github.com/Jhontabo/Registro-UCI",
-  },
-  {
-    id: 3,
-    dateEs: "Octubre 2025",
-    dateEn: "October 2025",
-    titleEs:
-      "Representación en semilleros de investigación en Bogotá",
-    titleEn:
-      "Represented Universidad Mariana at research seedbeds in Bogota",
-    descriptionEs:
-      "Representé a la Universidad Mariana en semilleros de investigación en la ciudad de Bogotá.",
-    descriptionEn:
-      "Represented Universidad Mariana at research seedbeds in Bogota.",
   },
   {
     id: 4,
