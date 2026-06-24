@@ -94,7 +94,7 @@ function PacmanInstall() {
 
     const start = batch * batchSize;
     if (start >= packages.length) {
-      setPhase("done");
+      setTimeout(() => setPhase("done"), 0);
       return;
     }
 
@@ -390,7 +390,7 @@ function HtopMonitor() {
 
       {/* Processes */}
       <div>
-        {data.procs.map((p, idx) => (
+        {data.procs.map((p) => (
           <div key={p.pid} className="flex items-center text-[8px] leading-[1.4]">
             <span className="w-8 text-zinc-500">{p.pid}</span>
             <span className="w-6 text-green-400 tabular-nums">{p.cpu.toFixed(1)}</span>
@@ -429,6 +429,16 @@ export default function TerminalFooter() {
   return (
     <div className="relative border-t border-cyan-500/10 bg-[#040406]">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Section Title */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            <span className="hypr-gradient-text font-black">
+              <span className="text-cyan-400">$</span> dev_environment
+            </span>
+          </h2>
+          <p className="text-zinc-400 text-sm">Arch Linux · BSPWM · Developer Setup</p>
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded mt-4" />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Htop Window */}
           <div className="tiling-window active-blue flex flex-col">

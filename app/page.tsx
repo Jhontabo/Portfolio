@@ -14,8 +14,8 @@ export default function Home() {
       </div>
       <Navbar />
       <Hero />
-      <JourneyTimeline />
       <PortfolioSection />
+      <JourneyTimeline />
       <TerminalFooter />
       <Footer />
     </main>
