@@ -88,17 +88,10 @@ export default function Skills() {
           className="mt-12 p-6 bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-xl"
         >
           <h4 className="text-lg font-semibold text-white mb-2">
-            🖥️ Mi Setup de Desarrollo
+            {t.portfolio.setupTitle}
           </h4>
           <p className="text-zinc-400">
-            <span className="text-emerald-500 font-medium">Linux Arch</span>{" "}
-            con{" "}
-            <span className="text-emerald-500 font-medium">BSPWM</span> como
-            window manager y{" "}
-            <span className="text-emerald-500 font-medium">NvChad</span> como
-            editor de código. Todo potencializado con{" "}
-            <span className="text-emerald-500 font-medium">WSL</span> para
-            entornos Windows.
+            {t.portfolio.setupDescription}
           </p>
         </motion.div>
       </div>

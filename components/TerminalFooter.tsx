@@ -4,8 +4,22 @@ import { useEffect, useRef, useState } from "react";
 
 function CMatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -45,13 +59,15 @@ function CMatrixRain() {
 
     const interval = setInterval(draw, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [visible]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full rounded-b-lg"
-    />
+    <div ref={containerRef} className="w-full h-full rounded-b-lg">
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full rounded-b-lg"
+      />
+    </div>
   );
 }
 
@@ -294,6 +310,8 @@ function InfoPanel() {
 }
 
 function HtopMonitor() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
   const [data, setData] = useState({
     cpu: [12, 8, 23, 15],
     mem: 47,
@@ -310,6 +328,18 @@ function HtopMonitor() {
   });
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
     const interval = setInterval(() => {
       setData((prev) => ({
         ...prev,
@@ -324,10 +354,10 @@ function HtopMonitor() {
       }));
     }, 1500);
     return () => clearInterval(interval);
-  }, []);
+  }, [visible]);
 
   return (
-    <div className="p-2 font-mono text-[9px] bg-[#0b0c10]/95 min-h-[240px] leading-[1.4]">
+    <div ref={ref} className="p-2 font-mono text-[9px] bg-[#0b0c10]/95 min-h-[240px] leading-[1.4]">
       {/* Header */}
       <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-white font-bold mb-1">
         <span className="text-yellow-300">htop</span>

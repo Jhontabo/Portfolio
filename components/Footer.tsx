@@ -25,19 +25,19 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-6 justify-center">
             <a
               href="#home"
-              className="text-zinc-500 hover:text-cyan-400 transition-colors text-xs font-mono"
+              className="text-zinc-400 hover:text-cyan-400 transition-colors text-xs font-mono"
             >
               # {t.nav.home.toLowerCase()}
             </a>
             <a
               href="#journey"
-              className="text-zinc-500 hover:text-cyan-400 transition-colors text-xs font-mono"
+              className="text-zinc-400 hover:text-cyan-400 transition-colors text-xs font-mono"
             >
               # {t.nav.journey.toLowerCase()}
             </a>
             <a
               href="#portfolio"
-              className="text-zinc-500 hover:text-cyan-400 transition-colors text-xs font-mono"
+              className="text-zinc-400 hover:text-cyan-400 transition-colors text-xs font-mono"
             >
               # {t.nav.portfolio.toLowerCase()}
             </a>
