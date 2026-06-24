@@ -1,24 +1,27 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { CalendarDays, GraduationCap, Microscope, Stethoscope, Github } from "lucide-react";
+import { CalendarDays, GraduationCap, Stethoscope, Github } from "lucide-react";
 import { journeyTimeline, personalInfo } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
 
 export default function JourneyTimeline() {
   const { locale, t } = useLocale();
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({});
 
-  const icons = [GraduationCap, Stethoscope, Microscope, CalendarDays];
+  const icons = [GraduationCap, Stethoscope, CalendarDays];
+  const branchColors = ["#00a8f4", "#a855f7", "#00e5d0"];
 
   return (
-    <section id="journey" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="journey" className="py-20 overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">
             <span className="hypr-gradient-text-purple font-black">{t.journey.title}</span>
@@ -28,67 +31,168 @@ export default function JourneyTimeline() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/50 via-cyan-500/30 to-transparent sm:-translate-x-1/2" />
+          {/* Central trunk */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-cyan-400/50 via-purple-500/50 to-cyan-400/50 hidden md:block" />
 
-          <div className="space-y-8">
+          <div className="space-y-8 md:space-y-16">
             {journeyTimeline.map((item, index) => {
               const Icon = icons[index % icons.length];
+              const color = branchColors[index % branchColors.length];
               const isLeft = index % 2 === 0;
+              const isExpanded = !!expanded[item.id];
 
-              return (
-                <motion.article
-                  key={item.id}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className={`relative sm:w-[calc(50%-1.5rem)] ${isLeft ? "sm:mr-auto" : "sm:ml-auto"}`}
+              const BubbleCircle = () => (
+                <motion.div
+                  layout
+                  transition={{ type: "spring", stiffness: 260, damping: 26 }}
+                  onClick={() => !isExpanded && setExpanded((prev) => ({ ...prev, [item.id]: true }))}
+                  className="cursor-pointer select-none"
                 >
-                  <div className="absolute left-4 top-6 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_0_6px_rgba(0,229,208,0.15)] sm:left-auto sm:right-[-1.72rem] sm:top-10 sm:w-3.5 sm:h-3.5" />
-
-                  <div className="ml-10 sm:ml-0 tiling-window hover:active-purple flex flex-col">
-                    <div className="h-8 bg-zinc-950 px-4 flex items-center justify-between border-b border-white/5">
-                      <div className="flex gap-1.5">
-                        <span className="window-dot bg-[#ff5f56] w-2 h-2 rounded-full" />
-                        <span className="window-dot bg-[#ffbd2e] w-2 h-2 rounded-full" />
-                        <span className="window-dot bg-[#27c93f] w-2 h-2 rounded-full" />
-                      </div>
-                      <span className="text-[10px] font-mono text-zinc-500">journey_step_{item.id}.sh</span>
-                      <div className="w-8" />
-                    </div>
-
-                    <div className="p-5 sm:p-6">
-                      <div className="flex items-center gap-3 mb-3 text-cyan-300">
-                        <span className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-300/20">
-                          <Icon size={18} />
-                        </span>
-                        <span className="text-sm font-medium uppercase tracking-wide font-mono">
+                  {isExpanded ? (
+                    /* Expanded: rectangular card */
+                    <div
+                      className="tiling-window p-5"
+                      style={{
+                        borderColor: `${color}60`,
+                        boxShadow: `0 0 25px ${color}25`,
+                      }}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <span
+                          className="text-[10px] font-mono px-2 py-0.5 border rounded-md"
+                          style={{ color, borderColor: `${color}30`, backgroundColor: `${color}10` }}
+                        >
                           {locale === "en" ? item.dateEn : item.dateEs}
                         </span>
+                        <div className="flex gap-1">
+                          <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+                          <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+                          <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+                        </div>
                       </div>
-
-                      <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                      <h3 className="text-lg font-bold text-white mb-2">
                         {locale === "en" ? item.titleEn : item.titleEs}
                       </h3>
-                      <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
+                      <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                         {locale === "en" ? item.descriptionEn : item.descriptionEs}
                       </p>
-
-                      {(item.linkType === "github" || item.link) && (
-                        <a
-                          href={item.link || personalInfo.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={t.journey.githubProfile}
-                          className="mt-4 inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
+                      <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                        {(item.linkType === "github" || item.link) && (
+                          <a
+                            href={item.link || personalInfo.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[10px] font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                          >
+                            <Github size={12} />
+                            <span>[view_repo]</span>
+                          </a>
+                        )}
+                        <div />
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpanded((prev) => ({ ...prev, [item.id]: false }));
+                          }}
+                          className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors"
                         >
-                          <Github size={16} />
-                          {t.journey.viewGithub}
-                        </a>
+                          [close]
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Collapsed: circle bubble with neon hover */
+                    <div
+                      className="group w-48 sm:w-56 h-48 sm:h-56 rounded-full flex flex-col items-center justify-center p-4 sm:p-6 text-center border-2 transition-all duration-500 hover:scale-105 bg-[#0b0c10]/90 cursor-pointer"
+                      style={{
+                        borderColor: `${color}60`,
+                        boxShadow: `0 0 20px ${color}20, 0 8px 30px rgba(0,0,0,0.5)`,
+                        transition: "all 0.4s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = color;
+                        e.currentTarget.style.boxShadow = `0 0 30px ${color}60, 0 0 60px ${color}30, 0 8px 30px rgba(0,0,0,0.5)`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = `${color}60`;
+                        e.currentTarget.style.boxShadow = `0 0 20px ${color}20, 0 8px 30px rgba(0,0,0,0.5)`;
+                      }}
+                    >
+                      <div
+                        className="p-3 rounded-full border mb-3 flex items-center justify-center transition-all duration-400 group-hover:scale-110"
+                        style={{ borderColor: `${color}30`, backgroundColor: `${color}10` }}
+                      >
+                        <Icon size={20} style={{ color }} />
+                      </div>
+                      <span
+                        className="text-sm font-bold font-mono mb-1 transition-all duration-400"
+                        style={{ color }}
+                      >
+                        {locale === "en" ? item.dateEn : item.dateEs}
+                      </span>
+                      <h3 className="text-sm font-semibold text-zinc-200 mb-3 leading-tight line-clamp-2 max-w-[20ch]">
+                        {locale === "en" ? item.titleEn : item.titleEs}
+                      </h3>
+                      <span
+                        className="text-[10px] font-mono uppercase tracking-widest font-semibold transition-all duration-400 group-hover:tracking-[0.15em]"
+                        style={{ color }}
+                      >
+                        {locale === "en" ? "Read more" : "Leer más"}
+                      </span>
+                    </div>
+                  )}
+                </motion.div>
+              );
+
+              return (
+                <div key={item.id} className="relative">
+                  {/* Desktop */}
+                  <div className="hidden md:flex items-center justify-center">
+                    {isLeft ? (
+                      <>
+                        <div className="flex-[0_0_calc(50%-32px)] flex justify-end pr-10">
+                          <BubbleCircle />
+                        </div>
+                        <div className="shrink-0 w-16 flex justify-center relative z-10">
+                          <div
+                            className="w-4 h-4 rounded-full border-2 bg-[#040406]"
+                            style={{ borderColor: color, boxShadow: `0 0 12px ${color}80` }}
+                          />
+                        </div>
+                        <div className="flex-[0_0_calc(50%-32px)]" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex-[0_0_calc(50%-32px)]" />
+                        <div className="shrink-0 w-16 flex justify-center relative z-10">
+                          <div
+                            className="w-4 h-4 rounded-full border-2 bg-[#040406]"
+                            style={{ borderColor: color, boxShadow: `0 0 12px ${color}80` }}
+                          />
+                        </div>
+                        <div className="flex-[0_0_calc(50%-32px)] flex justify-start pl-10">
+                          <BubbleCircle />
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Mobile */}
+                  <div className="flex md:hidden items-start gap-4">
+                    <div className="flex flex-col items-center shrink-0">
+                      <div
+                        className="w-3.5 h-3.5 rounded-full border-2 shrink-0"
+                        style={{ borderColor: color, boxShadow: `0 0 8px ${color}60` }}
+                      />
+                      {index < journeyTimeline.length - 1 && (
+                        <div className="w-0.5 flex-1 bg-gradient-to-b from-cyan-400/40 to-transparent" />
                       )}
                     </div>
+                    <div className="flex-1 pb-6">
+                      <BubbleCircle />
+                    </div>
                   </div>
-                </motion.article>
+                </div>
               );
             })}
           </div>

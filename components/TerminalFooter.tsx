@@ -329,15 +329,15 @@ function HtopMonitor() {
   return (
     <div className="p-2 font-mono text-[9px] bg-[#0b0c10]/95 min-h-[240px] leading-[1.4]">
       {/* Header */}
-      <div className="flex items-center gap-1 text-[10px] text-white font-bold mb-1">
+      <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-white font-bold mb-1">
         <span className="text-yellow-300">htop</span>
-        <span className="text-zinc-500 font-normal ml-1">|</span>
+        <span className="text-zinc-500 font-normal">|</span>
         <span className="text-green-400 font-normal">CPU</span>
         <span className="text-white font-normal">@{data.cpu.reduce((a, b) => a + b, 0) / data.cpu.length | 0}%</span>
         <span className="text-zinc-500 font-normal">|</span>
         <span className="text-green-400 font-normal">Mem</span>
         <span className="text-white font-normal">@{data.mem | 0}%</span>
-        <span className="text-zinc-500 font-normal ml-auto">Tasks: {data.tasks}, uptime: {data.uptime}</span>
+        <span className="text-zinc-500 font-normal ml-auto hidden sm:inline">Tasks: {data.tasks}, uptime: {data.uptime}</span>
       </div>
 
       {/* CPU bars */}

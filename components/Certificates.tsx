@@ -1,15 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Award, ExternalLink, Calendar } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Award, ExternalLink, Calendar, X } from "lucide-react";
+import Image from "next/image";
 import { certificates } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
 
+function getDriveId(link: string) {
+  const match = link.match(/\/file\/d\/([^/]+)/);
+  return match ? match[1] : null;
+}
+
+function getPreviewUrl(link: string) {
+  const id = getDriveId(link);
+  if (id) return `https://drive.google.com/file/d/${id}/preview`;
+  return link;
+}
+
+function getThumbnailUrl(link: string) {
+  const id = getDriveId(link);
+  if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
+  return null;
+}
+
 export default function Certificates() {
-  const { t } = useLocale();
+  const [previewCertId, setPreviewCertId] = useState<number | null>(null);
+  const { t, locale } = useLocale();
 
   return (
-    <section id="certificates" className="py-20 bg-zinc-900/30">
+    <section id="certificates" className="py-16 sm:py-24 bg-zinc-900/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,10 +38,10 @@ export default function Certificates() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            {t.certificates.title}
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            <span className="hypr-gradient-text font-black">{t.certificates.title}</span>
           </h2>
-          <div className="w-20 h-1 bg-emerald-500 mx-auto rounded" />
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded" />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 gap-6">
@@ -31,44 +51,116 @@ export default function Certificates() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 hover:border-emerald-500/50 transition-colors group"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="tiling-window hover:active-purple flex flex-col group h-full"
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 bg-emerald-500/10 rounded-lg">
-                  <Award size={28} className="text-emerald-500" />
+              {/* Window Header */}
+              <div className="h-8 bg-zinc-950 px-4 flex items-center justify-between border-b border-white/5">
+                <div className="flex gap-1.5">
+                  <span className="window-dot bg-[#ff5f56] w-2 h-2 rounded-full" />
+                  <span className="window-dot bg-[#ffbd2e] w-2 h-2 rounded-full" />
+                  <span className="window-dot bg-[#27c93f] w-2 h-2 rounded-full" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white group-hover:text-emerald-500 transition-colors">
-                    {cert.name}
-                  </h3>
-                  <p className="text-emerald-500 text-sm font-medium">
-                    {cert.issuer}
-                  </p>
-                </div>
+                <span className="text-[10px] font-mono text-zinc-500">cert_credential_{cert.id}.pdf</span>
+                <div className="w-8" />
               </div>
 
-              <p className="text-zinc-400 text-sm mb-4">
-                {cert.description}
-              </p>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-zinc-500 text-sm">
-                  <Calendar size={14} />
-                  <span>{cert.date}</span>
+              <div className="p-5 sm:p-6 flex-1 flex flex-col">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="p-2.5 bg-purple-500/10 rounded-lg shrink-0 border border-purple-300/15">
+                    <Award className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-purple-300 transition-colors line-clamp-2">
+                      {locale === "en" ? cert.nameEn ?? cert.name : cert.name}
+                    </h3>
+                    <p className="text-purple-400 text-xs sm:text-sm font-medium mt-0.5">
+                      {cert.issuer}
+                    </p>
+                  </div>
                 </div>
-                <a
-                  href={cert.link}
-                  className="flex items-center gap-2 text-sm text-emerald-500 hover:text-emerald-400 transition-colors"
-                >
-                  <ExternalLink size={16} />
-                  Ver certificado
-                </a>
+
+                {(() => {
+                  const thumb = getThumbnailUrl(cert.link);
+                  return thumb ? (
+                    <div className="mb-4 rounded-lg overflow-hidden border border-purple-300/15">
+                      <Image
+                        src={thumb}
+                        alt={cert.name}
+                        width={400}
+                        height={300}
+                        className="w-full max-h-64 object-contain bg-zinc-900/50 rounded-lg"
+                      />
+                    </div>
+                  ) : null;
+                })()}
+
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                  {cert.date ? (
+                    <div className="flex items-center gap-1.5 text-zinc-500 font-mono text-xs">
+                      <Calendar size={13} />
+                      <span>{cert.date}</span>
+                    </div>
+                  ) : <div />}
+                  <button
+                    onClick={() => setPreviewCertId(cert.id)}
+                    className="flex items-center gap-1.5 text-xs font-mono text-purple-300 hover:text-purple-200 transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    [view_doc]
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Preview Modal */}
+      <AnimatePresence>
+        {previewCertId !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={() => setPreviewCertId(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl h-[85vh] bg-zinc-900 rounded-xl border border-zinc-700 overflow-hidden flex flex-col"
+            >
+              <div className="h-10 bg-zinc-950 px-4 flex items-center justify-between border-b border-zinc-800 shrink-0">
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="text-xs font-mono text-zinc-500">
+                  {certificates.find((c) => c.id === previewCertId)?.name ?? "preview.pdf"}
+                </span>
+                <button
+                  onClick={() => setPreviewCertId(null)}
+                  className="text-zinc-400 hover:text-white transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <div className="flex-1 bg-zinc-800">
+                <iframe
+                  src={getPreviewUrl(certificates.find((c) => c.id === previewCertId)?.link ?? "")}
+                  className="w-full h-full"
+                  allow="autoplay"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

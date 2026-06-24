@@ -1,7 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import JourneyTimeline from "@/components/JourneyTimeline";
 import PortfolioSection from "@/components/PortfolioSection";
+import JourneyTimeline from "@/components/JourneyTimeline";
+import Certificates from "@/components/Certificates";
+import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
 import TerminalFooter from "@/components/TerminalFooter";
 
@@ -16,6 +18,8 @@ export default function Home() {
       <Hero />
       <PortfolioSection />
       <JourneyTimeline />
+      <Certificates />
+      <Skills />
       <TerminalFooter />
       <Footer />
     </main>

@@ -32,7 +32,7 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`w-full max-w-5xl pointer-events-auto rounded-full transition-all duration-300 border backdrop-blur-md px-6 py-2 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] ${
+        className={`w-full max-w-5xl pointer-events-auto rounded-full transition-all duration-300 border backdrop-blur-md px-6 py-2 flex items-center justify-between relative shadow-[0_10px_30px_rgba(0,0,0,0.5)] ${
           isScrolled
             ? "bg-[#0b0c10]/80 border-cyan-500/20 shadow-[0_10px_30px_rgba(0,229,208,0.05)]"
             : "bg-[#0b0c10]/40 border-white/5"
