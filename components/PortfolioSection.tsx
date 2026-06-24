@@ -160,6 +160,8 @@ export default function PortfolioSection() {
                       <div className="flex gap-4 pt-2 border-t border-white/5">
                         <a
                           href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="flex items-center gap-1.5 text-xs font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
                         >
                           <ExternalLink size={14} />
@@ -167,6 +169,8 @@ export default function PortfolioSection() {
                         </a>
                         <a
                           href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
                         >
                           <Github size={14} />
