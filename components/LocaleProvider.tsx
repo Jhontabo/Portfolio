@@ -12,6 +12,7 @@ interface Translations {
   };
   hero: {
     role: string;
+    roles: string[];
     viewProjects: string;
     downloadCV: string;
     contactMe: string;

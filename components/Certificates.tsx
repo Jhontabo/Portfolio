@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, ExternalLink, Calendar, X } from "lucide-react";
 import Image from "next/image";
@@ -28,8 +28,16 @@ export default function Certificates() {
   const [previewCertId, setPreviewCertId] = useState<number | null>(null);
   const { t, locale } = useLocale();
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPreviewCertId(null);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, []);
+
   return (
-    <section id="certificates" className="py-16 sm:py-24 bg-zinc-900/30">
+    <section id="certificates" className="py-16 sm:py-24 bg-zinc-900/30 scroll-mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

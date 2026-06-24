@@ -14,7 +14,7 @@ export default function JourneyTimeline() {
   const branchColors = ["#00a8f4", "#a855f7", "#00e5d0"];
 
   return (
-    <section id="journey" className="py-20 overflow-hidden">
+    <section id="journey" className="py-20 overflow-hidden scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

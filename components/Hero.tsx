@@ -7,18 +7,12 @@ import { personalInfo } from "@/lib/data";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const roles = [
-  "Full-Stack Developer",
-  "Systems Engineer",
-  "Software Engineer",
-  "React · Express · Laravel",
-];
-
 export default function Hero() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const [text, setText] = useState("");
   const [idx, setIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const roles = locale === "en" ? t.hero.roles : t.hero.roles;
 
   useEffect(() => {
     const current = roles[idx];
@@ -44,7 +38,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden dot-grid"
+      className="min-h-screen flex items-center justify-center pt-24 pb-16 relative overflow-hidden dot-grid scroll-mt-24"
     >
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse duration-[8000ms]" />

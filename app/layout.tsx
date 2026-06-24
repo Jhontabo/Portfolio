@@ -17,6 +17,23 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Jhon Tajumbina | Full-Stack Developer",
   description: "Full-Stack Developer | React · Express · Laravel - Estudiante de Ingeniería de Sistemas",
+  metadataBase: new URL("https://jhon-tajumbina.vercel.app"),
+  openGraph: {
+    title: "Jhon Tajumbina | Full-Stack Developer",
+    description: "Full-Stack Developer | React · Express · Laravel - Estudiante de Ingeniería de Sistemas",
+    type: "website",
+    locale: "es_CO",
+    siteName: "Jhon Tajumbina Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jhon Tajumbina | Full-Stack Developer",
+    description: "Full-Stack Developer | React · Express · Laravel - Estudiante de Ingeniería de Sistemas",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default async function RootLayout({

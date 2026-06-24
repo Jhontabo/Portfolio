@@ -13,7 +13,7 @@ export default function PortfolioSection() {
   const { t, locale } = useLocale();
 
   return (
-    <section id="portfolio" className="py-16 sm:py-24">
+    <section id="portfolio" className="py-16 sm:py-24 scroll-mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -79,24 +79,28 @@ export default function PortfolioSection() {
                 </div>
 
                 <div className="flex gap-4 pt-2 border-t border-white/5">
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
-                  >
-                    <ExternalLink size={14} />
-                    [live_demo]
-                  </a>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
-                  >
-                    <Github size={14} />
-                    [src_code]
-                  </a>
+                  {project.demo !== "#" && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                    >
+                      <ExternalLink size={14} />
+                      [live_demo]
+                    </a>
+                  )}
+                  {project.github !== "#" && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+                    >
+                      <Github size={14} />
+                      [src_code]
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
