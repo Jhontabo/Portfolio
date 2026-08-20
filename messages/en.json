@@ -23,7 +23,9 @@
     "tools": "Tools"
   },
   "certificates": {
-    "title": "Certifications"
+    "title": "Certifications",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "portfolio": {
     "title": "Portfolio",

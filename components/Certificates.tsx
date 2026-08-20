@@ -26,7 +26,9 @@ function getThumbnailUrl(link: string) {
 
 export default function Certificates() {
   const [previewCertId, setPreviewCertId] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const { t, locale } = useLocale();
+  const INITIAL_COUNT = 2;
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -35,6 +37,9 @@ export default function Certificates() {
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
   }, []);
+
+  const visibleCerts = showAll ? certificates : certificates.slice(0, INITIAL_COUNT);
+  const hasMore = certificates.length > INITIAL_COUNT;
 
   return (
     <section id="certificates" className="py-16 sm:py-24 bg-zinc-900/30 scroll-mt-24">
@@ -53,7 +58,7 @@ export default function Certificates() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 gap-6">
-          {certificates.map((cert, index) => (
+          {visibleCerts.map((cert, index) => (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 20 }}
@@ -122,6 +127,17 @@ export default function Certificates() {
             </motion.div>
           ))}
         </div>
+
+        {hasMore && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="font-mono text-xl px-12 py-4 rounded-xl border-2 border-purple-400 text-white bg-purple-500/20 hover:bg-purple-500/40 hover:border-purple-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all font-semibold"
+            >
+              {showAll ? t.certificates.showLess : t.certificates.showMore}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Preview Modal */}
