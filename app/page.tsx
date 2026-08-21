@@ -5,7 +5,6 @@ import JourneyTimeline from "@/components/JourneyTimeline";
 import Certificates from "@/components/Certificates";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
-import TerminalFooter from "@/components/TerminalFooter";
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
       <JourneyTimeline />
       <Certificates />
       <Skills />
-      <TerminalFooter />
       <Footer />
     </main>
   );

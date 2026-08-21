@@ -79,21 +79,6 @@ export default function Skills() {
             );
           })}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 p-6 bg-gradient-to-r from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-xl"
-        >
-          <h4 className="text-lg font-semibold text-white mb-2">
-            {t.portfolio.setupTitle}
-          </h4>
-          <p className="text-zinc-400">
-            {t.portfolio.setupDescription}
-          </p>
-        </motion.div>
       </div>
     </section>
   );

@@ -49,7 +49,50 @@ export default function JourneyTimeline() {
               const isLeft = index % 2 === 0;
               const isExpanded = !!expanded[item.id];
 
-              const BubbleCircle = () => (
+              const DesktopCard = () => (
+                <div
+                  className="tiling-window p-5 w-full max-w-sm"
+                  style={{
+                    borderColor: `${color}60`,
+                    boxShadow: `0 0 25px ${color}25`,
+                  }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span
+                      className="text-[10px] font-mono px-2 py-0.5 border rounded-md"
+                      style={{ color, borderColor: `${color}30`, backgroundColor: `${color}10` }}
+                    >
+                      {locale === "en" ? item.dateEn : item.dateEs}
+                    </span>
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
+                      <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
+                      <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
+                    </div>
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-1.5">
+                    {locale === "en" ? item.titleEn : item.titleEs}
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-3">
+                    {locale === "en" ? item.descriptionEn : item.descriptionEs}
+                  </p>
+                  {(item.linkType === "github" || item.link) && (
+                    <div className="pt-2 border-t border-white/5">
+                      <a
+                        href={item.link || personalInfo.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[10px] font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                      >
+                        <GithubIcon size={10} />
+                        <span>[view_repo]</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+
+              const MobileBubble = () => (
                 <motion.div
                   layout
                   transition={{ type: "spring", stiffness: 260, damping: 26 }}
@@ -113,11 +156,10 @@ export default function JourneyTimeline() {
                       style={{
                         borderColor: `${color}60`,
                         boxShadow: `0 0 15px ${color}15, 0 4px 20px rgba(0,0,0,0.4)`,
-                        transition: "all 0.4s ease",
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = color;
-                        e.currentTarget.style.boxShadow = `0 0 25px ${color}50, 0 0 50px ${color}25, 0 4px 20px rgba(0,0,0,0.4)`;
+                        e.currentTarget.style.boxShadow = `0 0 25px ${color}50, 0 0 50px ${color}25`;
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.borderColor = `${color}60`;
@@ -157,7 +199,7 @@ export default function JourneyTimeline() {
                     {isLeft ? (
                       <>
                         <div className="flex-[0_0_calc(50%-32px)] flex justify-end pr-8">
-                          <BubbleCircle />
+                          <DesktopCard />
                         </div>
                         <div className="shrink-0 w-12 flex justify-center relative z-10">
                           <div
@@ -177,7 +219,7 @@ export default function JourneyTimeline() {
                           />
                         </div>
                         <div className="flex-[0_0_calc(50%-32px)] flex justify-start pl-8">
-                          <BubbleCircle />
+                          <DesktopCard />
                         </div>
                       </>
                     )}
@@ -192,7 +234,7 @@ export default function JourneyTimeline() {
                       />
                     </div>
                     <div className="flex-1 -mt-0.5">
-                      <BubbleCircle />
+                      <MobileBubble />
                     </div>
                   </div>
                 </div>
