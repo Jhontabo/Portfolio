@@ -4,6 +4,8 @@ export const personalInfo = {
   email: "jhon.tajumbina@email.com",
   linkedin: "https://www.linkedin.com/in/jhon-tajumbina-8917922a3",
   github: "https://github.com/Jhontabo",
+  bioEs: "Soy Jhon Tajumbina, desarrollador Full-Stack con sede en Pasto, Colombia. He trabajado en una amplia gama de proyectos, desde aplicaciones móviles para unidades de cuidados intensivos hasta sistemas de gestión de inventarios para laboratorios universitarios, con un enfoque en crear interfaces limpias y funcionales que no solo se ven bien, sino que también brindan una experiencia de usuario fluida.",
+  bioEn: "I'm Jhon Tajumbina, a Full-Stack Developer based in Pasto, Colombia. I have worked on a wide range of projects, from mobile applications for intensive care units to inventory management systems for university laboratories, with a focus on creating clean, well-crafted interfaces that not only look great but also provide a seamless user experience.",
 };
 
 export const projects = [

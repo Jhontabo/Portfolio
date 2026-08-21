@@ -67,10 +67,14 @@ export default function Hero() {
               <span className="hypr-gradient-text font-black">Tajumbina</span>
             </h1>
 
-            <p className="text-lg sm:text-2xl text-zinc-400 mb-8 font-medium font-mono min-h-[2rem]">
+            <p className="text-lg sm:text-2xl text-zinc-400 mb-6 font-medium font-mono min-h-[2rem]">
               <span className="text-purple-400">&gt; </span>
               <span>{text}</span>
               <span className="animate-pulse text-cyan-400 ml-0.5">▊</span>
+            </p>
+
+            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8 max-w-xl">
+              {locale === "en" ? personalInfo.bioEn : personalInfo.bioEs}
             </p>
 
             {/* Glowing Buttons */}
