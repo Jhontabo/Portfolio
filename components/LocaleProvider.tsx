@@ -24,12 +24,18 @@ interface Translations {
   };
   skills: {
     title: string;
+    languages: string;
     frontend: string;
     backend: string;
+    mobile: string;
     tools: string;
+    showMore: string;
+    showLess: string;
   };
   certificates: {
     title: string;
+    showMore: string;
+    showLess: string;
   };
   portfolio: {
     title: string;

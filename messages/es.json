@@ -18,9 +18,13 @@
   },
   "skills": {
     "title": "Habilidades",
+    "languages": "Lenguajes",
     "frontend": "Frontend",
     "backend": "Backend",
-    "tools": "Herramientas"
+    "mobile": "Móvil",
+    "tools": "Herramientas",
+    "showMore": "Ver más",
+    "showLess": "Ver menos"
   },
   "certificates": {
     "title": "Certificaciones",

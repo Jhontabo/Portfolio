@@ -52,27 +52,40 @@ export const projects = [
 ];
 
 export const skills = {
+  languages: [
+    { name: "JavaScript", icon: "javascript" },
+    { name: "TypeScript", icon: "typescript" },
+    { name: "PHP", icon: "php" },
+    { name: "Python", icon: "python" },
+    { name: "Dart", icon: "dart" },
+  ],
   frontend: [
-    { name: "React", icon: "⚛️" },
-    { name: "Next.js", icon: "▲" },
-    { name: "Tailwind CSS", icon: "🎨" },
-    { name: "JavaScript", icon: "📜" },
-    { name: "TypeScript", icon: "🔷" },
+    { name: "React", icon: "react" },
+    { name: "Next.js", icon: "nextjs" },
+    { name: "Tailwind CSS", icon: "tailwindcss" },
+    { name: "HTML5", icon: "html5" },
+    { name: "CSS3", icon: "css3" },
   ],
   backend: [
-    { name: "Express.js", icon: "🚀" },
-    { name: "Laravel", icon: "🔶" },
-    { name: "Node.js", icon: "🟢" },
-    { name: "MySQL/MariaDB", icon: "🗄️" },
-    { name: "JWT", icon: "🔐" },
+    { name: "Express.js", icon: "express" },
+    { name: "Laravel", icon: "laravel" },
+    { name: "Node.js", icon: "nodedotjs" },
+    { name: "MySQL/MariaDB", icon: "mysql" },
+    { name: "JWT", icon: "jwt" },
+  ],
+  mobile: [
+    { name: "Flutter", icon: "flutter" },
+    { name: "Dart", icon: "dart" },
+    { name: "Android", icon: "android" },
   ],
   tools: [
-    { name: "Git", icon: "📊" },
-    { name: "Linux Arch", icon: "🐧" },
-    { name: "BSPWM", icon: "🪟" },
-    { name: "NvChad", icon: "💻" },
-    { name: "AWS", icon: "☁️" },
-    { name: "WSL", icon: "🟢" },
+    { name: "Git", icon: "git" },
+    { name: "GitHub", icon: "github" },
+    { name: "Linux", icon: "linux" },
+    { name: "Bash", icon: "bash" },
+    { name: "Neovim", icon: "neovim" },
+    { name: "AWS", icon: "aws" },
+    { name: "WSL", icon: "windows" },
   ],
 };
 

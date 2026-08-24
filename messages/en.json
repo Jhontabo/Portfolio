@@ -18,9 +18,13 @@
   },
   "skills": {
     "title": "Skills",
+    "languages": "Languages",
     "frontend": "Frontend",
     "backend": "Backend",
-    "tools": "Tools"
+    "mobile": "Mobile",
+    "tools": "Tools",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "certificates": {
     "title": "Certifications",
