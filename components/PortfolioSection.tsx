@@ -91,9 +91,9 @@ export default function PortfolioSection() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                      className="flex items-center gap-1.5 text-base font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
                     >
-                      <ExternalLink size={18} />
+                      <ExternalLink size={20} />
                       [live_demo]
                     </a>
                   )}
@@ -102,9 +102,9 @@ export default function PortfolioSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm font-mono text-zinc-400 hover:text-white transition-colors"
+                      className="flex items-center gap-1.5 text-base font-mono text-zinc-400 hover:text-white transition-colors"
                     >
-                      <GithubIcon size={18} />
+                      <GithubIcon size={20} />
                       [src_code]
                     </a>
                   )}
