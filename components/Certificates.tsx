@@ -28,7 +28,7 @@ export default function Certificates() {
   const [previewCertId, setPreviewCertId] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const { t, locale } = useLocale();
-  const INITIAL_COUNT = 2;
+  const INITIAL_COUNT = 4;
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
