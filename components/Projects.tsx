@@ -1,9 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Folder } from "lucide-react";
-import { projects } from "@/lib/data";
+import { projects as fallbackProjects } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
+
+interface Project {
+  id: string;
+  name: string;
+  name_en?: string;
+  description: string;
+  description_en?: string;
+  technologies: string[];
+  demo: string;
+  github: string;
+  image_url?: string;
+}
 
 function GithubIcon({ size = 24 }: { size?: number }) {
   return (
@@ -15,6 +28,14 @@ function GithubIcon({ size = 24 }: { size?: number }) {
 
 export default function Projects() {
   const { t } = useLocale();
+  const [projects, setProjects] = useState<Project[]>(fallbackProjects as unknown as Project[]);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((r) => r.json())
+      .then((data) => { if (data?.length) setProjects(data); })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="projects" className="py-20">
@@ -43,8 +64,14 @@ export default function Projects() {
               className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-colors group"
             >
               <div className="h-48 bg-zinc-800 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
-                <Folder size={48} className="text-zinc-600 group-hover:text-emerald-500 transition-colors" />
+                {project.image_url ? (
+                  <img src={project.image_url} alt={project.name} className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent" />
+                    <Folder size={48} className="text-zinc-600 group-hover:text-emerald-500 transition-colors" />
+                  </>
+                )}
               </div>
 
               <div className="p-6">

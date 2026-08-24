@@ -1,12 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ExternalLink,
   Folder,
 } from "lucide-react";
-import { projects } from "@/lib/data";
+import { projects as fallbackProjects } from "@/lib/data";
 import { useLocale } from "./LocaleProvider";
+
+interface Project {
+  id: string;
+  name: string;
+  name_en?: string;
+  description: string;
+  description_en?: string;
+  technologies: string[];
+  demo: string;
+  github: string;
+  image_url?: string;
+}
 
 function GithubIcon({ size = 24 }: { size?: number }) {
   return (
@@ -18,6 +31,14 @@ function GithubIcon({ size = 24 }: { size?: number }) {
 
 export default function PortfolioSection() {
   const { t, locale } = useLocale();
+  const [projects, setProjects] = useState<Project[]>(fallbackProjects as unknown as Project[]);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((r) => r.json())
+      .then((data) => { if (data?.length) setProjects(data); })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="portfolio" className="py-16 sm:py-24 scroll-mt-24">
@@ -62,16 +83,22 @@ export default function PortfolioSection() {
               </div>
 
               <div className="h-32 sm:h-40 bg-zinc-900/60 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent" />
-                <Folder className="w-10 h-10 text-zinc-600 group-hover:text-cyan-400 transition-colors duration-300" />
+                {project.image_url ? (
+                  <img src={project.image_url} alt={project.name} className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent" />
+                    <Folder className="w-10 h-10 text-zinc-600 group-hover:text-cyan-400 transition-colors duration-300" />
+                  </>
+                )}
               </div>
 
               <div className="p-5 sm:p-6 flex-1 flex flex-col">
                 <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors line-clamp-1">
-                  {locale === "en" ? project.nameEn ?? project.name : project.name}
+                  {locale === "en" ? project.name_en ?? project.name : project.name}
                 </h3>
                 <p className="text-zinc-400 text-sm mb-4 line-clamp-3">
-                  {locale === "en" ? project.descriptionEn ?? project.description : project.description}
+                  {locale === "en" ? project.description_en ?? project.description : project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
