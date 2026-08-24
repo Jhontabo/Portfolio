@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { verifyAdmin } from "@/lib/auth";
 
 export async function GET() {
   const admin = await verifyAdmin();
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("certificates")
     .select("*")
     .order("sort_order", { ascending: true });
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const { id, created_at, updated_at, ...insert } = body;
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("certificates")
     .insert(insert)
     .select()

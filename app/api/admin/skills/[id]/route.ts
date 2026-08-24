@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { verifyAdmin } from "@/lib/auth";
 
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -10,7 +10,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   const body = await request.json();
   const { created_at, ...updates } = body;
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("skills")
     .update(updates)
     .eq("id", id)
@@ -26,7 +26,7 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   if (!admin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  const { error } = await supabaseAdmin
+  const { error } = await getSupabaseAdmin()
     .from("skills")
     .delete()
     .eq("id", id);

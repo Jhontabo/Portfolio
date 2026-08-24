@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { verifyAdmin } from "@/lib/auth";
 
 export async function POST(request: Request) {
@@ -18,13 +18,13 @@ export async function POST(request: Request) {
     const fileExt = file.name.split(".").pop();
     const fileName = `${folder}/${Date.now()}.${fileExt}`;
 
-    const { data, error } = await supabaseAdmin.storage
+    const { data, error } = await getSupabaseAdmin().storage
       .from("portfolio")
       .upload(fileName, file, { contentType: file.type });
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-    const { data: urlData } = supabaseAdmin.storage
+    const { data: urlData } = getSupabaseAdmin().storage
       .from("portfolio")
       .getPublicUrl(data.path);
 
