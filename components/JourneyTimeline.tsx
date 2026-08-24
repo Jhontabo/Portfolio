@@ -59,7 +59,7 @@ export default function JourneyTimeline() {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span
-                      className="text-[10px] font-mono px-2 py-0.5 border rounded-md"
+                      className="text-sm sm:text-base font-mono px-3 py-1 border rounded-md"
                       style={{ color, borderColor: `${color}30`, backgroundColor: `${color}10` }}
                     >
                       {locale === "en" ? item.dateEn : item.dateEs}
@@ -82,9 +82,9 @@ export default function JourneyTimeline() {
                         href={item.link || personalInfo.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-[10px] font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-sm font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
                       >
-                        <GithubIcon size={10} />
+                        <GithubIcon size={18} />
                         <span>[view_repo]</span>
                       </a>
                     </div>
@@ -109,7 +109,7 @@ export default function JourneyTimeline() {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span
-                          className="text-[10px] font-mono px-2 py-0.5 border rounded-md"
+                          className="text-sm sm:text-base font-mono px-3 py-1 border rounded-md"
                           style={{ color, borderColor: `${color}30`, backgroundColor: `${color}10` }}
                         >
                           {locale === "en" ? item.dateEn : item.dateEs}
@@ -132,9 +132,9 @@ export default function JourneyTimeline() {
                             href={item.link || personalInfo.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-[10px] font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
+                            className="inline-flex items-center gap-1.5 text-sm font-mono text-cyan-300 hover:text-cyan-200 transition-colors"
                           >
-                            <GithubIcon size={10} />
+                            <GithubIcon size={18} />
                             <span>[view_repo]</span>
                           </a>
                         )}
@@ -173,7 +173,7 @@ export default function JourneyTimeline() {
                         <Icon size={20} style={{ color }} />
                       </div>
                       <span
-                        className="text-sm font-bold font-mono mb-1 transition-all duration-400"
+                        className="text-base font-bold font-mono mb-1 transition-all duration-400"
                         style={{ color }}
                       >
                         {locale === "en" ? item.dateEn : item.dateEs}
