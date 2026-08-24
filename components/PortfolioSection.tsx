@@ -32,6 +32,7 @@ function GithubIcon({ size = 24 }: { size?: number }) {
 export default function PortfolioSection() {
   const { t, locale } = useLocale();
   const [projects, setProjects] = useState<Project[]>(fallbackProjects as unknown as Project[]);
+  const [modalImage, setModalImage] = useState<{ src: string; alt: string } | null>(null);
 
   useEffect(() => {
     fetch("/api/projects")
@@ -39,6 +40,12 @@ export default function PortfolioSection() {
       .then((data) => { if (data?.length) setProjects(data); })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (modalImage) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [modalImage]);
 
   return (
     <section id="portfolio" className="py-16 sm:py-24 scroll-mt-24">
@@ -84,7 +91,12 @@ export default function PortfolioSection() {
 
               <div className="h-32 sm:h-40 bg-zinc-900/60 flex items-center justify-center relative overflow-hidden">
                 {project.image_url ? (
-                  <img src={project.image_url} alt={project.name} className="w-full h-full object-cover" />
+                  <img
+                    src={project.image_url}
+                    alt={project.name}
+                    className="w-full h-full object-cover cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => setModalImage({ src: project.image_url!, alt: project.name })}
+                  />
                 ) : (
                   <>
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/5 to-transparent" />
@@ -141,6 +153,26 @@ export default function PortfolioSection() {
           ))}
         </div>
       </div>
+
+      {modalImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          onClick={() => setModalImage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/60 hover:text-white text-3xl leading-none"
+            onClick={() => setModalImage(null)}
+          >
+            ×
+          </button>
+          <img
+            src={modalImage.src}
+            alt={modalImage.alt}
+            className="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }
