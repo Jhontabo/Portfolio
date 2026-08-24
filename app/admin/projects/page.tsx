@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface Project {
   id: string;
@@ -26,6 +26,8 @@ export default function ProjectsPage() {
   const [techInput, setTechInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch("/api/admin/projects").then((r) => r.json()).then((data) => {
@@ -83,6 +85,22 @@ export default function ProjectsPage() {
     setForm({ ...form, technologies: form.technologies.filter((t) => t !== tech) });
   }
 
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "projects");
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (res.ok && data.url) setForm({ ...form, image_url: data.url });
+    } catch {}
+    setUploading(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
   if (loading) return <div className="flex justify-center py-20"><div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" /></div>;
 
   if (editing) {
@@ -98,7 +116,38 @@ export default function ProjectsPage() {
             <Field label="Nombre (EN)" value={form.name_en} onChange={(v) => setForm({ ...form, name_en: v })} />
             <Field label="Demo URL" value={form.demo} onChange={(v) => setForm({ ...form, demo: v })} />
             <Field label="GitHub URL" value={form.github} onChange={(v) => setForm({ ...form, github: v })} />
-            <Field label="Imagen URL" value={form.image_url} onChange={(v) => setForm({ ...form, image_url: v })} />
+            <div>
+              <label className="block text-zinc-400 text-sm mb-1">Imagen del proyecto</label>
+              <div className="flex gap-2">
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-700 hover:text-white transition-colors disabled:opacity-50 shrink-0"
+                >
+                  {uploading ? "Subiendo..." : "Subir imagen"}
+                </button>
+                {form.image_url && (
+                  <img src={form.image_url} alt="Preview" className="h-10 w-10 rounded object-cover border border-zinc-700" />
+                )}
+              </div>
+              {form.image_url && (
+                <input
+                  type="text"
+                  value={form.image_url}
+                  onChange={(e) => setForm({ ...form, image_url: e.target.value })}
+                  className="w-full mt-2 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors"
+                  placeholder="O pega una URL directamente"
+                />
+              )}
+            </div>
             <Field label="Orden" value={String(form.sort_order)} onChange={(v) => setForm({ ...form, sort_order: Number(v) })} />
           </div>
           <TextArea label="Descripción (ES)" value={form.description} onChange={(v) => setForm({ ...form, description: v })} />
